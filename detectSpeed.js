@@ -1,5 +1,5 @@
 (function () {
-        var root, previous_detectSpeed;
+        var detectSpeed = {};
 
         root = this;
         if (root != null) {
@@ -10,8 +10,8 @@
             root.detectSpeed = previous_detectSpeed;
             return detectSpeed;
         };
-        
-        var detectSpeed = function (earl, callback) {
+
+        detectSpeed.startSpeedCheck = function (earl, callback) {
             var earl = earl || "https://s3-us-west-1.amazonaws.com/amit.shanbhag/3g/coffee-apple-iphone-laptop.jpg";
             earl = earl + (/\?/.test(earl) ? "&" : "?") + "cacheBuster=" + Date.now();
             var _timings = {};
