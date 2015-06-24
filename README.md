@@ -10,9 +10,34 @@ The utility tries to download a file in the browser and measure client speed. It
 
 There are other means of approximating your connection speed: device type, browser etc. You can, for instance assume that an iPhone is most likley using 3G. However, it could be using wifi, and hence have a faster connection. This utility takes the guess work out. 
 
+##Get Started
+Download the library https://raw.githubusercontent.com/ashanbh/detectClientSpeed/master/detectSpeed/detectSpeed.js
+
+Include it in your HTML using a script tag. This will create a global object called 'detectSpeed'.
+see 
+```
+ <script src="scripts/detectSpeed.js"></script>
+```
+
+Use via AMD. see 
+```javascript
+<script src="scripts/require.js"></script>
+<script>
+        requirejs(['scripts/detectSpeed'], function (detectSpeed) {
+        
+            //Callback to receive timing information
+            var callback = function (timings) {
+                console.log(timings);
+            }
+            detectSpeed.startSpeedCheck("https://s3-us-west-1.amazonaws.com/amit.shanbhag/3g/coffee-apple-iphone-laptop.jpg", callback);
+            
+        });
+</script>
+```
+
 ##Usage
 The basic syntax is as follows
-```
+```javascript
 detectSpeed.startSpeedCheck (
   'http://mydomain.com/mylargingImage.png',
   function callback(timings){
@@ -39,10 +64,10 @@ detectSpeed.startSpeedCheck (
 You call the function "startSpeedCheck" with 2 arguments, a url and a callback function. The callback function receives an object with timing information.
 
 ## Speed Classes
-The utility tries to best guess the type of connection in the browser. It does so based on the definitions below.
+The utility tries to best guess the type of connection in the browser. It does so based on the definitions below. However, it also returns raw information, incase you need it.
 
-```
-* 	    "SPEED_OFFLINE": {
+```javascript
+ * 	    "SPEED_OFFLINE": {
  * 	        "name": "offline",
  * 	        "latency": 0,
  * 	        "throughput": 0
@@ -83,6 +108,8 @@ The utility tries to best guess the type of connection in the browser. It does s
  * 	        "throughput": 10000
  * 	    }
 ```
+
+
 
 
 
