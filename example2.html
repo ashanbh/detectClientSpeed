@@ -2,7 +2,8 @@
 <html>
 <head>
     <title>Detect Speed</title>
-    <script src="lib/require.js"></script>
+    <script src="detectSpeed/detectSpeed.js"></script>
+
     <script>
         function write(s) {
             document.getElementById("output").innerHTML = document.getElementById("output").innerHTML + s;
@@ -10,37 +11,35 @@
     </script>
 
     <script>
-        requirejs(['detectSpeed/detectSpeed'], function (detectSpeed) {
+        window.onload = function() {
             //Console logs
             write("Starting Speed Detection\n");
 
             //print dots "."
             var interval = setInterval(function () {
                 write(".");
-            },500);
+            }, 500);
 
             //Callback to receive timing information
             var callback = function (timings) {
                 clearInterval(interval);
-                write("\nSpeedTest finished in "+ (timings.end-timings.start) +" milliseconds");
-                write("\n\n\nTiming Information = \n" + JSON.stringify(timings,null,4));
+                write("\nSpeedTest finished in " + (timings.end - timings.start) + " milliseconds");
+                write("\n\n\nTiming Information = \n" + JSON.stringify(timings, null, 4));
             }
 
             ////////////////////////////
             //Kickoff detection process
             ////////////////////////////
-            detectSpeed.startSpeedCheck("https://s3-us-west-1.amazonaws.com/amit.shanbhag/3g/coffee-apple-iphone-laptop.jpg", callback);
-        });
+            detectSpeed.startSpeedCheck(undefined, callback);
+        }
     </script>
 
 </head>
 <body>
-<h1>Example 1</h1>
-DetectSpeed using AMD & large file.
+<h1>Example 2</h1>
+DetectSpeed loaded using script tags & default options.<br/>
 <br/>By default the util uses <a href="https://s3-us-west-1.amazonaws.com/amit.shanbhag/3g/coffee-apple-iphone-laptop.jpg"> a very large file</a>, hosted on S3.
-<br/>We recommend that you substitute the URL in this example with a smaller file hosted on your own server.
-<br/>Since the util makes XHR requests, beware of CORS issues.
-
+<br/>We recommend that you call the util with a smaller file hosted on your own server.
 <pre id="output"></pre>
 </body>
 </html>
