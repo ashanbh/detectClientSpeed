@@ -1,4 +1,7 @@
 # detectClientSpeed
+See it in action: 
+http://ashanbh.github.io/detectClientSpeed/example1.html
+http://ashanbh.github.io/detectClientSpeed/example2.html
 
 ##About
 detectClientSpeed allows you to detect the speed of your connection within a browser, i.e determine whether the user is using 3G, WIFi, broadband etc. 
@@ -14,12 +17,12 @@ There are other means of approximating your connection speed: device type, brows
 Download the library https://raw.githubusercontent.com/ashanbh/detectClientSpeed/master/detectSpeed/detectSpeed.js
 
 Include it in your HTML using a script tag. This will create a global object called 'detectSpeed'.
-see 
+see [example](http://ashanbh.github.io/detectClientSpeed/example2.html)
 ```
  <script src="scripts/detectSpeed.js"></script>
 ```
 
-Use via AMD. see 
+Use via AMD. see [example](http://ashanbh.github.io/detectClientSpeed/example1.html)
 ```javascript
 <script src="scripts/require.js"></script>
 <script>
