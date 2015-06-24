@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="lib/require.js"></script>
+    <script>
+        requirejs(['detectSpeed'], function (detectSpeed) {
+            var callback = function(timings){
+                alert("ConnectionClass ="+timings.start);
+            }
+            detectSpeed.startSpeedCheck("https://s3-us-west-1.amazonaws.com/amit.shanbhag/3g/coffee-apple-iphone-laptop.jpg", callback);
+        });
+    </script>
+
+</head>
+<body>
+<h1>Use DetectSpeed</h1>
+<pre id="output"></pre>pre>
+</body>
+</html>
