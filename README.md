@@ -79,7 +79,12 @@ The utility tries to best guess the type of connection in the browser. It does s
  * 	        "latency": 0,
  * 	        "throughput": 0
  * 	    },
- * 	    "SPEED_GPRS": {
+ *          "DIAL_UP": {
+ *              name: 'DAIL_UP',
+ *              latency: 2000,
+ *              throughput: 2.4
+ *          },
+ * 	    "SPEED_GPRS"
  * 	        "name": "GPRS",
  * 	        "latency": 500,
  * 	        "throughput": 50
@@ -115,8 +120,3 @@ The utility tries to best guess the type of connection in the browser. It does s
  * 	        "throughput": 10000
  * 	    }
 ```
-
-
-
-
-

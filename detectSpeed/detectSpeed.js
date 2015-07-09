@@ -24,9 +24,14 @@
  * the utility also contains the following constants
  * 	    "SPEED_OFFLINE": {
  * 	        "name": "offline",
- * 	        "latency": 0,
+ * 	        "latency": Number.POSITIVE_INFINITY,
  * 	        "throughput": 0
  * 	    },
+ *	    "DIAL_UP": {
+ *       	name: 'DAIL_UP',
+ *       	latency: 2000,
+ *       	throughput: 2.4
+ *   	    },
  * 	    "SPEED_GPRS": {
  * 	        "name": "GPRS",
  * 	        "latency": 500,
