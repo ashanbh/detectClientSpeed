@@ -17,7 +17,8 @@
  *          "dataSizeKB":   //Size of the data in *bytes*
  *          "latency":      //Latency (connection round trip time) in milliseconds
  *          "throughput":   //in KBPS
- *          "speedClass":   //one of the constants shown below.
+ *          "throughPutSpeedClass":   //one of the constants shown below.
+ *          "latencySpeedClass":   //one of the constants shown below.
  *      }
  *
  *
