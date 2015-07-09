@@ -69,9 +69,13 @@
     var detectSpeed = {}
     var speedClasses = [{
         name: 'OFFLINE',
-        latency: 0,
+        latency: Number.POSITIVE_INFINITY,
         throughput: 0
-    }, {
+    },{
+        name: 'DAIL_UP',
+        latency: 2000,
+        throughput: 2.4 
+    },{
         name: 'GPRS',
         latency: 500,
         throughput: 50
@@ -132,8 +136,11 @@
             _timings.latency = (_timings.firstByte - _timings.start);
             _timings.throughput = Math.round(size / (_timings.end - _timings.firstByte) * 100) / 100; //in KBPS
             for (var s = 0; s < speedClasses.length; s++) {
-                if(_timings.throughput > speedClasses[s].throughput && _timings.latency <speedClasses[s].latency){
-                    _timings.speedClass = speedClasses[s];
+                if(_timings.throughput > speedClasses[s].throughput){
+                    _timings.throughPutSpeedClass = speedClasses[s];
+                }
+                if(_timings.latency <speedClasses[s].latency){
+                    _timings.latencySpeedClass = speedClasses[s];
                 }
             }
             callback && callback(_timings);
