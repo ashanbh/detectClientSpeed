@@ -59,7 +59,11 @@ detectSpeed.startSpeedCheck (
  *          "dataSizeKB":   //Size of the data in *bytes*
  *          "latency":      //Latency (connection round trip time) in milliseconds
  *          "throughput":   //in KBPS
- *          "speedClass":   //returns a speed class e.g. 3G,4G,WIFI etc.
+ *          "throughPutSpeedClass":   //returns a speed class e.g. 3G,4G,WIFI etc. 
+ *                                    //which has atleast as much throughput.
+ *          "latencySpeedClass":      //where the latency is no more that of  
+ *                                    // a given speed class
+ *                                     
  *      }
 */
 ```
