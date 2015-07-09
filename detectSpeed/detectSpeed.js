@@ -116,7 +116,7 @@
         return detectSpeed;
     };
     detectSpeed.startSpeedCheck = function (earl, callback) {
-        var earl = earl || "http://s3-us-west-1.amazonaws.com/amit.shanbhag/3g/coffee-apple-iphone-laptop.jpg";
+        var earl = earl || "http://ashanbh.github.io/images/coffee-apple-iphone-laptop.jpg";
         earl = earl + (/\?/.test(earl) ? "&" : "?") + "cacheBuster=" + Date.now();
         var _timings = {};
         var _progress = function (e) {
