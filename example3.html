@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Detect Speed</title>
+    <script src="detectSpeed/detectSpeed.js"></script>
+
+    <script>
+        function write(where, s) {
+            document.getElementById(where).innerHTML = document.getElementById(where).innerHTML + s;
+        }
+        function loadingbar(percentage){
+          var bar = "(";
+          for (i = 0; i < percentage ; i ++){
+            bar = bar + "|";
+          }
+          for (i = percentage; i < 100 ; i++){
+            bar = bar + "_";
+          }
+          bar = bar + ")";
+          document.getElementById("loading").innerHTML = bar;
+        }
+    </script>
+
+    <script>
+        window.onload = function() {
+            //Console logs
+            write("header","Starting Speed Detection\n");
+
+            var onprogress = function c(evt){
+              if (evt.lengthComputable)
+              {
+                var percentComplete = (evt.loaded / evt.total)*100;
+                console.log(percentComplete);
+                loadingbar(percentComplete);
+              }
+            }
+
+            //Callback to receive timing information
+            var callback = function (timings) {
+                write("output","\nSpeedTest finished in " + (timings.end - timings.start) + " milliseconds");
+                write("output","\n\n\nTiming Information = \n" + JSON.stringify(timings, null, 4));
+            }
+
+            ////////////////////////////
+            //Kickoff detection process
+            ////////////////////////////
+            detectSpeed.startSpeedCheck(undefined, callback, onprogress);
+        }
+    </script>
+
+</head>
+<body>
+<h1>Example 3</h1>
+DetectSpeed loaded using script tags & default options.<br/>
+<br/>By default the util uses <a href="http://ashanbh.github.io/images/coffee-apple-iphone-laptop.jpg"> a very large file</a>, hosted on S3.
+<br/>We recommend that you call the util with a smaller file hosted on your own server.
+<br/>Also we have a progress bar.
+<pre id="header"></pre>
+<pre id="loading"></pre>
+<pre id="output"></pre>
+</body>
+</html>
