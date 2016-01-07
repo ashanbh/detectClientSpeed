@@ -1,17 +1,17 @@
 # detectClientSpeed
-See it in action: 
+See it in action:
 http://ashanbh.github.io/detectClientSpeed/example1.html
 http://ashanbh.github.io/detectClientSpeed/example2.html
 
 ##About
-detectClientSpeed allows you to detect the speed of your connection within a browser, i.e determine whether the user is using 3G, WIFi, broadband etc. 
+detectClientSpeed allows you to detect the speed of your connection within a browser, i.e determine whether the user is using 3G, WIFi, broadband etc.
 
-This may have wide application. But, this is mosty useful in situations where you'd like to serve smaller assets on slower connections. E.g. You can decide to serve a video (larger asset) on broadband and an image (smaller asset) on 3G. 
+This may have wide application. But, this is mosty useful in situations where you'd like to serve smaller assets on slower connections. E.g. You can decide to serve a video (larger asset) on broadband and an image (smaller asset) on 3G.
 
 ##Approach
-The utility tries to download a file in the browser and measure client speed. Its pretty simple, in that it makes an XHR call to retreive an image, and calculates things like latency, throughput and conection speed class. 
+The utility tries to download a file in the browser and measure client speed. Its pretty simple, in that it makes an XHR call to retreive an image, and calculates things like latency, throughput and conection speed class.
 
-There are other means of approximating your connection speed: device type, browser etc. You can, for instance assume that an iPhone is most likley using 3G. However, it could be using wifi, and hence have a faster connection. This utility takes the guess work out. 
+There are other means of approximating your connection speed: device type, browser etc. You can, for instance assume that an iPhone is most likley using 3G. However, it could be using wifi, and hence have a faster connection. This utility takes the guess work out.
 
 ##Get Started
 Download the library https://raw.githubusercontent.com/ashanbh/detectClientSpeed/master/detectSpeed/detectSpeed.js
@@ -27,13 +27,13 @@ Use via AMD. see [example](http://ashanbh.github.io/detectClientSpeed/example1.h
 <script src="scripts/require.js"></script>
 <script>
         requirejs(['scripts/detectSpeed'], function (detectSpeed) {
-        
+
             //Callback to receive timing information
             var callback = function (timings) {
                 console.log(timings);
             }
             detectSpeed.startSpeedCheck("https://s3-us-west-1.amazonaws.com/amit.shanbhag/3g/coffee-apple-iphone-laptop.jpg", callback);
-            
+
         });
 </script>
 ```
@@ -45,9 +45,16 @@ detectSpeed.startSpeedCheck (
   'http://mydomain.com/mylargingImage.png',
   function callback(timings){
     ...
-  }
+  },
+  function onprogress(evt){
+      if (evt.lengthComputable)
+      {
+        var percentComplete = (evt.loaded / evt.total)*100;
+        console.log(percentComplete);
+      }
+    }
 );
- 
+
 /*
  * The timing data is returned as follows:
  *
@@ -59,7 +66,7 @@ detectSpeed.startSpeedCheck (
  *          "dataSizeKB":   //Size of the data in *bytes*
  *          "latency":      //Latency (connection round trip time) in milliseconds
  *          "throughput":   //in KBPS
- *          "throughPutSpeedClass":   //returns a speed class e.g. 3G,4G,WIFI etc. 
+ *          "throughPutSpeedClass":   //returns a speed class e.g. 3G,4G,WIFI etc.
  *                                    //which has atleast as much throughput.
  *          "latencySpeedClass":      //where the latency is no more that of  
  *                                    // a given speed class

@@ -5,7 +5,8 @@
  *
  * Example usage
  * -------------
- * detectSpeed.startSpeedCheck ('http://myURl',function callback(timings){...});
+ * detectSpeed.startSpeedCheck ('http://myURl',function callback(timings){...},
+                                function onprogress(evt){...});
  *
  * The timing data is returned as follows:
  *
@@ -80,7 +81,7 @@
     },{
         name: 'DAIL_UP',
         latency: 2000,
-        throughput: 2.4 
+        throughput: 2.4
     },{
         name: 'GPRS',
         latency: 500,
@@ -125,7 +126,7 @@
         root.detectSpeed = previous_detectSpeed;
         return detectSpeed;
     };
-    detectSpeed.startSpeedCheck = function (earl, callback) {
+    detectSpeed.startSpeedCheck = function (earl, callback, onprogress) {
         var earl = earl || "http://ashanbh.github.io/images/coffee-apple-iphone-laptop.jpg";
         earl = earl + (/\?/.test(earl) ? "&" : "?") + "cacheBuster=" + Date.now();
         var _timings = {};
@@ -154,6 +155,7 @@
         };
         var oReq = new XMLHttpRequest();
         oReq.addEventListener("progress", _progress, false);
+        oReq.onprogress = onprogress || function (evt) {;};
         oReq.onload = _done;
         _timings.start = Date.now();
         oReq.open("GET", earl);
