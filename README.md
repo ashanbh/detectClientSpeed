@@ -10,7 +10,6 @@ This may have wide application. But, this is mosty useful in situations where yo
 
 ## Approach
 The utility tries to download a file in the browser and measure client speed. Its pretty simple, in that it makes an XHR call to retreive an image, and calculates things like latency, throughput and conection speed class.
-
 There are other means of approximating your connection speed: device type, browser etc. You can, for instance assume that an iPhone is most likley using 3G. However, it could be using wifi, and hence have a faster connection. This utility takes the guess work out. 
 
 ## Get Started
